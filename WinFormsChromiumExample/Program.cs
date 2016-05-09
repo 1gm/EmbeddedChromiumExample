@@ -12,14 +12,16 @@ namespace WinFormsChromiumExample
         [STAThread]
         static void Main()
         {
-            var settings = new CefSettings();
-            settings.CefCommandLineArgs.Add("disable-extensions", "1");
-            settings.CefCommandLineArgs.Add("disable-pdf-extension", "1");
-            Cef.Initialize(settings);
+            if(Cef.Initialize())
+            {
+                FileHost.Start();
 
-            var browserForm = new BrowserForm();
+                Application.Run(new BrowserForm());
 
-            Application.Run(browserForm);
+                FileHost.Stop();
+
+                Cef.Shutdown();
+            }
         }
     }
 }
