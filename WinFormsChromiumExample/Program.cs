@@ -15,11 +15,8 @@ namespace WinFormsChromiumExample
             if(Cef.Initialize())
             {
                 FileHost.Start();
-
                 Application.Run(new BrowserForm());
-
                 FileHost.Stop();
-
                 Cef.Shutdown();
             }
         }
